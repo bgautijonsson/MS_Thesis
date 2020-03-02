@@ -1,0 +1,45 @@
+# Introduction
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.pos = 'h',
+                      fig.width = 10, out.width = "90%", fig.asp = 0.621, fig.align = "center")
+
+```
+
+```{r, results = 'hide'}
+packages <- c("tidyverse", "ggthemes", "knitr", "kableExtra",
+              "ggsci", "cowplot", "scales")
+sapply(packages, require, character.only = TRUE, quietly = TRUE)
+theme_set(
+  theme_bw() + 
+    panel_border(colour = "black", size = 0.6) + 
+    background_grid(color.major = "grey90", color.minor = "grey95", minor = "xy", major = "xy", size.major = 0.2, size.minor = 0.1) +
+    theme(plot.margin = margin(2, 2, 2, 2))
+)
+```
+
+```{r}
+d <- read_csv("Data/combined_data.csv") %>% 
+  mutate(age = ifelse(age > 95, 95, age),
+         age = cut(age, breaks = seq(0, 100, 10), include.lowest = T, right = F)) %>% 
+  group_by(year, age) %>% 
+  summarise_at(vars(deaths, pop), ~sum(.) %>% as.integer) %>% 
+  ungroup %>% 
+  mutate(rate = deaths / pop)
+```
+
+## Motivation and Goals
+
+Over the years, progress in all aspects of medicine and public health has led to a steadily declining mortality and longer life expectancy around the world. While these developments are to be celebrated, they entail problems which must be handled. In the public sector, longer life expectancy can lead to higher health care costs as people live longer and the number of elderly patients increases. As for the private sector, insurance funds are heavily affected by changes in mortality, as they base pension annuities on projected mortality rates. If their projections are too high their estimated cost of annuities will be too low, leading to overpayment to clients, and if they are too low they might pay too little annuities, leading to underpayment fewer clients. Thus, it seems there is a need for accurate and precise forecasting of mortality rates.
+
+This project will introduce the Lee-Carter model [@lee1992modeling] for mortality forecasting and a bayesian Markov-Chain Monte-Carlo algorithm that obtains samples from the posterior distribution of all relevant parameters by treating the model as a linear Gaussan state-space model, also known as a dynamic linear model *(DLM)* [@west2006bayesian]. Two DLMs will be fit, one imitating the classic Lee-Carter model, and one allowing for different observational variances for each age-group.
+
+## Literature Review
+
+### Age-Period-Cohort Models
+
+### The Lee Carter Model
+
+### Stan
+
+## Structure of the Thesis

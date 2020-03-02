@@ -1,0 +1,547 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{ucs}
+% \usepackage{t1enc}
+\usepackage{graphicx}
+\usepackage[intoc]{nomencl}
+\usepackage[shortlabels]{enumitem}
+\usepackage{color}
+\usepackage{url}
+\usepackage{eso-pic}
+\usepackage{amssymb}
+\usepackage[nottoc]{tocbibind}
+\usepackage[sort&compress,authoryear]{natbib}
+\usepackage[sf,normalsize]{subfigure}
+\usepackage[format=plain,labelformat=simple,labelsep=colon]{caption}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{appendix}
+\usepackage{booktabs}
+\usepackage{geometry}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0cm}
+\raggedbottom
+
+\input{params}
+
+\newcommand\BackgroundPic{
+\put(0,0){
+\parbox[b][\paperheight]{\paperwidth}{
+\vfill
+\centering
+\hspace*{-0.6cm}
+\includegraphics[width=\paperwidth,height=\paperheight,
+keepaspectratio]{foot_img.png}
+}}
+\setlength{\unitlength}{\paperwidth}
+\begin{picture}(0,0)(0,-0.15)
+\put(0,0){\color{white}\parbox{1\paperwidth}{\centering\bfseries\sffamily \Large Faculty of \thesisfaculty \\
+University of Iceland\\
+\thesisyear}}
+\end{picture}
+}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\begin{titlepage}
+\newgeometry{centering}
+\thispagestyle{empty}
+\AddToShipoutPicture*{\BackgroundPic}
+%
+\begin{center}
+\vspace*{-3cm}
+\includegraphics[width=43.6mm]{UI_logo.png}\\
+\vspace*{3.0cm}
+\huge \sffamily \bfseries \thesistitle
+
+\vspace*{5.5cm}
+\normalfont \Large \sffamily \thesisauthor
+\AddToShipoutPicture*{\BackgroundPic}
+\vfill
+
+\end{center}
+\restoregeometry
+\newpage 
+\thispagestyle{empty} \mbox{}
+\newpage
+\vspace*{1.35cm}
+\thispagestyle{empty}
+\begin{center}
+
+\Large \textbf{\sffamily{\MakeUppercase{\thesistitle}}} \\
+
+\vspace*{1.7cm}
+\sffamily{\thesisauthor} \\
+\vspace*{1.8cm}
+\normalsize \thesiscredits~ECTS thesis submitted in partial fulfillment of a \\
+\textit{\thesiskindformal} degree in \thesissubject
+
+\vspace*{1.0cm}
+\large
+\ifnum\thesisnroftutors >1 Advisors \\ \thesistutors \\ \vspace*{0.4cm}
+\else Advisor \\ \thesistutors \\ \vspace*{1.04cm}
+\fi
+Faculty Representative \\
+\thesisrepresentative
+
+\vspace*{0.4cm}
+M.Sc. committee \\
+\thesiscommittee
+
+\vfill
+Faculty of \thesisfaculty \\
+\thesisschool \\
+University of Iceland \\
+Reykjavik, \thesismonth~\thesisyear
+\newpage
+\end{center}
+ \newpage
+ \thispagestyle{empty}
+ \mbox{} \vfill
+ % \setcounter{page}{0} \renewcommand{\baselinestretch}{1.5}\normalsize
+ \sffamily{\thesistitle} \\
+ \sffamily{\thesisshorttitle} \\
+ \thesiscredits ~ECTS thesis submitted in partial fulfillment of a \thesiskind~degree in \thesissubject
+\\ \\
+Copyright \textcopyright~\thesisyear~ \thesisauthor \\
+All rights reserved \\
+
+
+Faculty of \thesisfaculty \\
+\thesisschool \\
+University of Iceland \\
+\thesisaddress \\
+\thesispostalcode, Reykjavik \\
+Iceland
+
+Telephone: \thesistelephone \\ \\
+\vspace*{\lineskip}
+
+Bibliographic information: \\
+\thesisauthor, \thesisyear, \thesistitle, \thesiskind~thesis, Faculty of \thesisfaculty, University of Iceland. \\
+
+ISBN~\thesisISBN
+
+Printing: \thesisPrinting \\
+Reykjavik, Iceland, \thesismonth~\thesisyear \\
+\newpage
+\thispagestyle{empty} \mbox{}
+\vfill
+\begin{center}\textit{\thesisdedication}\end{center} \vspace*{5cm}
+\vfill 
+
+\thispagestyle{empty}
+\cleardoublepage
+\end{titlepage}
+
+
+% \dedication{\textit{Dedication} \small \\ Tileinkun má sleppa og skal þá fjarlægja blaðsíðuna. \\
+% Tileinkun skal birtast á oddatölu blaðsíðu (hægri síðu).}
+\pagenumbering{roman}
+
+\setcounter{page}{5}
+\section*{\huge Abstract}
+bla
+\vfill \vspace*{1cm}
+\section*{\huge Útdráttur}
+bla
+\vfill
+\newpage
+
+\chapter*{Preface}
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{Abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+
+\chapter*{Acknowledgments}
+\addcontentsline{toc}{chapter}{Acknowledgments}
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\hfill\break
+
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+\hypertarget{motivation-and-goals}{%
+\section{Motivation and Goals}\label{motivation-and-goals}}
+
+Over the years, progress in all aspects of medicine and public health has led to a steadily declining mortality and longer life expectancy around the world. While these developments are to be celebrated, they entail problems which must be handled. In the public sector, longer life expectancy can lead to higher health care costs as people live longer and the number of elderly patients increases. As for the private sector, insurance funds are heavily affected by changes in mortality, as they base pension annuities on projected mortality rates. If their projections are too high their estimated cost of annuities will be too low, leading to overpayment to clients, and if they are too low they might pay too little annuities, leading to underpayment fewer clients. Thus, it seems there is a need for accurate and precise forecasting of mortality rates.
+
+This project will introduce the Lee-Carter model \citep{lee1992modeling} for mortality forecasting and a bayesian Markov-Chain Monte-Carlo algorithm that obtains samples from the posterior distribution of all relevant parameters by treating the model as a linear Gaussan state-space model, also known as a dynamic linear model \emph{(DLM)} \citep{west2006bayesian}. Two DLMs will be fit, one imitating the classic Lee-Carter model, and one allowing for different observational variances for each age-group.
+
+\hypertarget{literature-review}{%
+\section{Literature Review}\label{literature-review}}
+
+\hypertarget{age-period-cohort-models}{%
+\subsection{Age-Period-Cohort Models}\label{age-period-cohort-models}}
+
+\hypertarget{the-lee-carter-model}{%
+\subsection{The Lee Carter Model}\label{the-lee-carter-model}}
+
+\hypertarget{stan}{%
+\subsection{Stan}\label{stan}}
+
+\hypertarget{structure-of-the-thesis}{%
+\section{Structure of the Thesis}\label{structure-of-the-thesis}}
+
+\hypertarget{theory-and-methods}{%
+\chapter{Theory and Methods}\label{theory-and-methods}}
+
+\hypertarget{bayesian-inference}{%
+\section{Bayesian Inference}\label{bayesian-inference}}
+
+This is theory and methods.
+
+\hypertarget{hierarchical-models}{%
+\section{Hierarchical Models}\label{hierarchical-models}}
+
+\hypertarget{gaussian-processes}{%
+\section{Gaussian Processes}\label{gaussian-processes}}
+
+\hypertarget{hamiltonian-monte-carlo}{%
+\section{Hamiltonian Monte Carlo}\label{hamiltonian-monte-carlo}}
+
+\hypertarget{leave-one-out-cross-validation}{%
+\section{Leave-One-Out Cross-Validation}\label{leave-one-out-cross-validation}}
+
+\hypertarget{pareto-smoothed-importance-sampling-loo-cv}{%
+\section{Pareto-Smoothed Importance Sampling LOO-CV}\label{pareto-smoothed-importance-sampling-loo-cv}}
+
+\hypertarget{data-and-preliminary-analysis}{%
+\chapter{Data and Preliminary Analysis}\label{data-and-preliminary-analysis}}
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+The data, coming from Statistics Iceland, contain Icelandic population estimates and number of deaths for all ages \(x = [0, 1, \dots, 104]\) and years \(t = [1981, 1982, \dots, 2017]\). The ages were reduced into ten groups (\([0, 10)\), \ldots, \([80, 90)\) and \([90, 104]\)) for ease of computation, leaving \(10 \times 27 = 270\) age-year-observations of population size and deaths. Figure 1 shows the evolution of population size in the ten age-groups. We can see that the population composition has shifted noticably towards an older population.
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.9\linewidth]{MS_Thesis_files/figure-latex/unnamed-chunk-3-1} 
+
+}
+
+\caption{Population sizes of year-age-groups, shown in log scale and overlaid on yearly totals for comparison.}\label{fig:unnamed-chunk-3}
+\end{figure}
+
+Figure 2 shows the evolution of number of deaths within each age-group over time. There has been a noticable decrease in deaths among the youngest part of the population, as well as an increase among the oldest part.
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.9\linewidth]{MS_Thesis_files/figure-latex/unnamed-chunk-4-1} 
+
+}
+
+\caption{Number of deaths by year and age, shown in log scale and overlaid on yearly totals for comparison.}\label{fig:unnamed-chunk-4}
+\end{figure}
+
+This figure alone is not enough evidence for changes in mortality rates, but when population and deaths are used to calculate observed mortality rates, as is done in figure 3, there is a noticable rate of change in mortality rates, with each age-group seeming to have its own linear trend with added observational noise.
+
+\begin{figure}[h]
+
+{\centering \includegraphics[width=0.9\linewidth]{MS_Thesis_files/figure-latex/unnamed-chunk-5-1} 
+
+}
+
+\caption{Time evolution of mortality rates by age-group, shown on log scale.}\label{fig:unnamed-chunk-5}
+\end{figure}
+
+\hypertarget{models-and-inference}{%
+\chapter{Models and Inference}\label{models-and-inference}}
+
+\hypertarget{the-lee-carter-model-1}{%
+\section{The Lee-Carter Model}\label{the-lee-carter-model-1}}
+
+\hypertarget{parametric-form}{%
+\subsection{Parametric Form}\label{parametric-form}}
+
+There exist many named models for the forecasting of mortality rates, but the most famous one is the Lee-Carter model \citep{lee1992modeling}, named after its authors Ronald D. Lee and Lawrence R. Carter. Let \(m(x, t)\) be the mortality rate for age \(x\) during year \(t\). The Lee-Carter model can be written
+
+\[
+\begin{aligned}
+\ln m(x, t) &= \alpha_x + \beta_x \kappa_t + \varepsilon_{x, t}, \\
+\kappa_t &= f(\kappa_{t - 1}) + \omega_t, \\
+\varepsilon_{x,t} &\sim  \mathcal N(0, \sigma^2_{\varepsilon}), \\
+\omega_t &\sim \mathcal N(0, \sigma^2_{\omega})
+\end{aligned}
+\]
+
+In this parametrization \(\alpha_x\) can be thought of as the mean log-mortality for age-group \(x\). As \(\mathbf \beta\) is a vector and \(\kappa_t\) is a scalar, \(\kappa\) is interpreted as a national mortality index and \(\beta_x\) as the rate-of-change intensity for age-group \(x\). Thus, change in mortality for all age-groups follows the same general pattern, but with different intensities determined by \(\beta\). Looking back at figure 3 this model fits one intercept and one coefficient of linear change for each age-group, corresponding to the mortality rate at year 1981 and the linear trend, which seems like a logical approximation when inspecting the figure.
+
+In their original paper, Lee and Carter modeled \(f\), the time-trend of \(\kappa\), as a random walk with drift, i.e.
+
+\[
+\begin{aligned}
+f(\kappa_{t-1}) &= \kappa_{t-1} + \theta, \textrm{ such that } \\
+\kappa_t &= \kappa_{t-1} + \theta + \omega_t
+\end{aligned}
+\]
+
+but others have included differencing and autoregressive behaviours such that \(f\) becomes a second-level ARIMA process
+
+\[
+(\kappa_t - \mu_\kappa - \beta_\kappa t) = \rho(\kappa_{t-1} - \mu_\kappa - \beta_\kappa (t-1)), \quad 0 < \vert\rho\vert < 1,
+\]
+
+where \(\mu_\kappa\) is the expected value of \(\kappa_0\) and \(\beta_\kappa\) is the linear trend of \(\kappa\). Thus the second level ARIMA representation assumes that the observed deviation of \(\kappa\) from its expected value at time \(t\), according to a linear trend, is correlated with that same deviation at time \(t-1\) with correlation \(\rho\).
+
+In this project the time-trend of \(\kappa\) is assumed to follow a random walk with drift.
+
+\hypertarget{classical-estimation}{%
+\subsection{Classical Estimation}\label{classical-estimation}}
+
+The Lee-Carter model as represented thus far is overparametrized, as any change in the estimates of \(\kappa\) can be reversed by adequate changes in \(\alpha\) and \(\beta\). To combat this, Lee and Carter imposed the following constraints to ensure identifiability
+
+\[
+\sum_i\beta_i = 1, \quad \sum_t \kappa_t = 0.
+\]
+
+Estimates of the parameters from the Lee-Carter model are commonly obtained by singular value decomposition \emph{(SVD)}. The vector \(\alpha\) is set to the average log-mortality for each agegroup and SVD is then applied to the mean-corrected mortality rates \(Y - \hat\alpha = UDV^T\), where \(D\) is a diagonal matrix containing singular values and \(U\) and \(V\) are orthogonal matrices. \(\beta\) is chosen as the first column of \(U\), and \(\kappa\) is set to be equal to the product of the first singular value, \(D_{11}\), and the first column of \(V\). The correct estimates are then obtained by imposing the necessary parameter restrictions. This is equivalent to performing principal component analysis on a matrix containing the mean-corrected log-mortality rates for all groups at all times and choosing the first principal component.
+
+\hypertarget{a-bayesian-state-space-interpretation}{%
+\section{A Bayesian State-Space Interpretation}\label{a-bayesian-state-space-interpretation}}
+
+Claudia Pedroza published an article in 2006 where she reformulates the method as a state-space model \citep{pedroza2006bayesian}:
+
+\[
+\begin{aligned}
+y_t &= \mathbf\alpha + \mathbf\beta\kappa_t + \varepsilon_t, 
+& \varepsilon \overset{\mathrm{iid}}{\sim} \mathrm{Normal} (\mathbf 0, \sigma^2_\varepsilon\mathbf I) \\
+\kappa_t &= \kappa_{t - 1} + \theta + \omega_t, 
+& \omega_t \overset{\mathrm{iid}}{\sim} \mathrm{Normal}(0, \sigma^2_\omega)
+\end{aligned}
+\]
+
+where \(y_t\) is a vector containing the log-mortality rates for all age-groups during year \(t\). As such, the Kalman Filter can be used to estimate and forecast mortality rates. State-space models also have the convenient property of easily handling missing data. In their 2009 book, Dynamic Linear Models with R, Giovanni Petris, Sonia Petorne and Patrizia Campagnoli, refer to the forward-filtering-backwards-sampling method for estimating state-space models using Markov Chain Monte Carlo \citep{campagnoli2009dynamic}. The details of this algorithm are further expanded in the 2006 book Bayesian Forecasting and Dynamic Models by Mike West and Jeff Harrison \citep{west2006bayesian}.
+
+\hypertarget{estimation-via-gibbs-sampling}{%
+\subsection{Estimation via Gibbs Sampling}\label{estimation-via-gibbs-sampling}}
+
+Pedroza utilized a Gibbs sampler to obtain samples from the posterior distribution of all parameters. The idea is to alternate between \textbf{(1)} drawing the states \(\kappa\) conditioned on the parameters \(\alpha\), \(\beta\), \(\sigma^2_\varepsilon\), \(\theta\), \(\sigma^2_\omega\) and \textbf{(2)} drawing the parameters given the states. Let \(T\) be the number of timepoints and \(N\) be the number of age-groups. Then \(Y\) is an \(N \times T\) matrix containing all log-mortality rates with \(y_{xt}\) equal to the log-mortality rate for age-group \(x\) at time \(t\), . First, suitable initial values are chosen for the parameters \(\alpha\), \(\beta\), \(\kappa\), \(\theta\), \(\sigma^2_\varepsilon\) and \(\sigma^2_\omega\). The sampler is composed of five steps that are then repeated until convergence.
+
+\textbf{(i)} Perform forward filtering and backward sampling to obtain samples from
+
+\[
+p(\kappa | Y, \alpha, \beta, \sigma^2_\varepsilon, \theta, \sigma^2_\omega).
+\]
+
+Write \(\kappa_t \sim \mathcal N(a_t, Q_t)\), and choose initial parameters \(a_0\), \(R_0\). Run the Kalman filter with updating equations
+
+\[
+\begin{gathered}
+v_t = y_t - \alpha - \beta a_t, \quad Q_t = \beta R_t\beta^T + \sigma^2_\varepsilon I_N, \quad K_t = R_t\beta^TQ_t^{-1}, \\
+a_{t+1} = a_t + \theta + K_tv_t, \quad R_{t+1} = R_t(1 - K_t\beta) + \sigma^2_\omega,
+\end{gathered}
+\]
+
+for \(t = 1, \dots, T\). Next, sample \(\kappa\) as
+
+\[
+\begin{gathered}
+\kappa_T | Y, \alpha, \beta, \sigma^2_\varepsilon, \theta, \sigma^2_\omega \sim \mathcal N(a_T, Q_T), \\
+\kappa_{t-1} | \kappa_t \sim \mathcal N(h_t, H_t), \\
+h_t = a_t + B_t(\kappa_{t+1} - a_{t+1}), \quad H_t = Q_t - B_tR_{t+1}B_t^T, \quad
+B_t = Q_tR_{t+1}^{-1}
+\end{gathered}
+\]
+
+\textbf{(ii)} Draw \(\sigma^2_\varepsilon\) from
+
+\[
+\sigma^2_\varepsilon | Y, \alpha, \beta, \kappa \sim \text{Inv-Gamma}\left(
+\frac{NT}{2}, \frac{\sum_x\sum_t(y_{xt} - \alpha_x - \beta_x\kappa_t)^2}{2}
+\right)
+\]
+
+\textbf{(iii)} Letting \(y_x\) be the log-mortality at all time points for age-group \(x\), draw \(\alpha\) and \(\beta\) by performing separate linear regressions of \(y_x\) on \(\kappa\) for each age group. That is, if \(X\) is a \(T \times 2\) matrix with first column equal to \([1, \dots, 1]\) and the second column equal to \(\kappa\) we sample \(\alpha_x\) and \(\beta_x\) from
+
+\[
+(\alpha_x, \beta_x) | Y, \kappa, \sigma^2_\varepsilon \sim \mathcal N(
+(X^TX)^{-1}X^Ty_x, \sigma^2_\varepsilon (X^TX)^{-1}
+)
+\]
+
+\textbf{(iv)} Sample \(\theta\) from
+
+\[
+\theta|\kappa, \sigma^2_\omega \sim \mathcal N\left(
+\frac{\kappa_T - \kappa_0}{T}, \frac{\sigma^2_\omega}{T}
+\right)
+\]
+
+\textbf{(v)} Draw \(\sigma^2_\omega\) from
+
+\[
+\sigma^2_\omega | \kappa, \theta \sim \text{Inv-Gamma}\left(
+\frac{T - 1}{2}, \frac{\sum_t (\kappa_t - \kappa_{t-1} - \theta)^2}{2}
+\right)
+\]
+
+\hypertarget{extensions}{%
+\subsection{Extensions}\label{extensions}}
+
+Treating the Lee-Carter model as a Bayesian state-space model makes arbitrary extensions easy. One other model will be fit to the data, allowing for different observational variances in each age-group. The Gibbs sampling algorithm is identical except for simple modifications at steps \textbf{(ii)} and \textbf{(iii)}:
+
+\textbf{(ii)} \(\sigma^2_{\varepsilon, x}\) is calculated separately for each age-group, \(x\).
+
+\[
+\sigma^2_{\varepsilon, x} | Y, \alpha, \beta, \kappa \sim \text{Inv-Gamma}\left(
+\frac{T}{2}, \frac{\sum_t(y_{xt} - \alpha_x - \beta_x\kappa_t)^2}{2}
+\right)
+\]
+
+\textbf{(iii)} Regression coefficients are now sampled conditional on each age-group's unique observational variance, \(\sigma^2_{\varepsilon, x}\).
+
+\[
+(\alpha_x, \beta_x) | Y, \kappa, \sigma^2_{\varepsilon, x} \sim \mathcal N(
+(X^TX)^{-1}X^Ty_x, \sigma^2_{\varepsilon, x} (X^TX)^{-1}
+)
+\]
+
+\hypertarget{prior-distributions}{%
+\subsection{Prior distributions}\label{prior-distributions}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\alpha\), \(\beta\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\alpha\) and \(\beta\) are given a flat prior \(p(\alpha, \beta) \hspace{1mm} \propto \hspace{1mm} 1\)
+  \end{itemize}
+\item
+  \(\sigma_\varepsilon\), \(\sigma_\omega\) and \(\sigma^2_{\varepsilon, x}\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\sigma_\varepsilon\), \(\sigma_\omega\) and \(\sigma^2_{\varepsilon, x}\) are all given a flat prior \(p(\sigma) \hspace{1mm} \propto \hspace{1mm} \frac1\sigma\).
+  \end{itemize}
+\item
+  \(\kappa_0\), \(\theta\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\kappa_0\) and \(\theta\) are given flat priors \(p(\kappa_0, \theta) \hspace{1mm} \propto \hspace{1mm} 1\).
+  \item
+    On the other hand initial values of \(m_0\) and \(C_0\) where \(\kappa_0 \sim \mathcal N(m_0, C_0)\) are needed, but these are overwritten after the first iteration of the Gibbs sampler.
+  \item
+    The sampler was tested for several different initial value pairs and found to be insensitive to the choice. The initial values used were \(m_0 = 3.74\) and \(C_0 = 1\).
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{gaussian-processes-1}{%
+\section{Gaussian Processes}\label{gaussian-processes-1}}
+
+\hypertarget{results}{%
+\chapter{Results}\label{results}}
+
+\hypertarget{convergence-assesment}{%
+\section{Convergence Assesment}\label{convergence-assesment}}
+
+This is Results
+
+\hypertarget{parameters}{%
+\section{Parameters}\label{parameters}}
+
+\hypertarget{hyperparameters}{%
+\section{Hyperparameters}\label{hyperparameters}}
+
+\hypertarget{model-checking}{%
+\section{Model Checking}\label{model-checking}}
+
+\hypertarget{goodness-of-fit}{%
+\section{Goodness of Fit}\label{goodness-of-fit}}
+
+\hypertarget{conclusions}{%
+\chapter{Conclusions}\label{conclusions}}
+
+This is Conclusions
+
+\newpage
+
+  \bibliography{msverkefni.bib}
+
+\end{document}

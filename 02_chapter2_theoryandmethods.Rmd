@@ -1,0 +1,16 @@
+# Theory and Methods
+
+## Bayesian Inference
+
+This is theory and methods.
+
+## Hierarchical Models
+
+## Gaussian Processes
+
+## Hamiltonian Monte Carlo
+
+## Leave-One-Out Cross-Validation
+
+## Pareto-Smoothed Importance Sampling LOO-CV
+

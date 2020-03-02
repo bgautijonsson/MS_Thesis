@@ -1,0 +1,9 @@
+--- 
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: msverkefni.bib
+biblio-style: apalike
+link-citations: yes
+---
+
+\

@@ -1,0 +1,13 @@
+# Results
+
+## Convergence Assesment
+
+This is Results
+
+## Parameters
+
+## Hyperparameters
+
+## Model Checking
+
+## Goodness of Fit

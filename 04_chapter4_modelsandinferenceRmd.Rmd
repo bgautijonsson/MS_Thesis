@@ -1,0 +1,159 @@
+# Models and Inference
+
+## The Lee-Carter Model
+
+### Parametric Form
+
+There exist many named models for the forecasting of mortality rates, but the most famous one is the Lee-Carter model [@lee1992modeling], named after its authors Ronald D. Lee and Lawrence R. Carter. Let $m(x, t)$ be the mortality rate for age $x$ during year $t$. The Lee-Carter model can be written
+
+$$
+\begin{aligned}
+\ln m(x, t) &= \alpha_x + \beta_x \kappa_t + \varepsilon_{x, t}, \\
+\kappa_t &= f(\kappa_{t - 1}) + \omega_t, \\
+\varepsilon_{x,t} &\sim  \mathcal N(0, \sigma^2_{\varepsilon}), \\
+\omega_t &\sim \mathcal N(0, \sigma^2_{\omega})
+\end{aligned}
+$$
+
+In this parametrization $\alpha_x$ can be thought of as the mean log-mortality for age-group $x$. As $\mathbf \beta$ is a vector and $\kappa_t$ is a scalar, $\kappa$ is interpreted as a national mortality index and $\beta_x$ as the rate-of-change intensity for age-group $x$. Thus, change in mortality for all age-groups follows the same general pattern, but with different intensities determined by $\beta$. Looking back at figure 3 this model fits one intercept and one coefficient of linear change for each age-group, corresponding to the mortality rate at year 1981 and the linear trend, which seems like a logical approximation when inspecting the figure.
+
+In their original paper, Lee and Carter modeled $f$, the time-trend of $\kappa$, as a random walk with drift, i.e.
+
+$$
+\begin{aligned}
+f(\kappa_{t-1}) &= \kappa_{t-1} + \theta, \textrm{ such that } \\
+\kappa_t &= \kappa_{t-1} + \theta + \omega_t
+\end{aligned}
+$$
+
+but others have included differencing and autoregressive behaviours such that $f$ becomes a second-level ARIMA process
+
+$$
+(\kappa_t - \mu_\kappa - \beta_\kappa t) = \rho(\kappa_{t-1} - \mu_\kappa - \beta_\kappa (t-1)), \quad 0 < \vert\rho\vert < 1,
+$$
+
+where $\mu_\kappa$ is the expected value of $\kappa_0$ and $\beta_\kappa$ is the linear trend of $\kappa$. Thus the second level ARIMA representation assumes that the observed deviation of $\kappa$ from its expected value at time $t$, according to a linear trend, is correlated with that same deviation at time $t-1$ with correlation $\rho$.
+
+In this project the time-trend of $\kappa$ is assumed to follow a random walk with drift.
+
+### Classical Estimation
+
+The Lee-Carter model as represented thus far is overparametrized, as any change in the estimates of $\kappa$ can be reversed by adequate changes in $\alpha$ and $\beta$. To combat this, Lee and Carter imposed the following constraints to ensure identifiability
+
+$$
+\sum_i\beta_i = 1, \quad \sum_t \kappa_t = 0.
+$$
+
+Estimates of the parameters from the Lee-Carter model are commonly obtained by singular value decomposition *(SVD)*. The vector $\alpha$ is set to the average log-mortality for each agegroup and SVD is then applied to the mean-corrected mortality rates $Y - \hat\alpha = UDV^T$, where $D$ is a diagonal matrix containing singular values and $U$ and $V$ are orthogonal matrices. $\beta$ is chosen as the first column of $U$, and $\kappa$ is set to be equal to the product of the first singular value, $D_{11}$, and the first column of $V$. The correct estimates are then obtained by imposing the necessary parameter restrictions. This is equivalent to performing principal component analysis on a matrix containing the mean-corrected log-mortality rates for all groups at all times and choosing the first principal component.
+
+## A Bayesian State-Space Interpretation
+
+Claudia Pedroza published an article in 2006 where she reformulates the method as a state-space model [@pedroza2006bayesian]:
+
+$$
+\begin{aligned}
+y_t &= \mathbf\alpha + \mathbf\beta\kappa_t + \varepsilon_t, 
+& \varepsilon \overset{\mathrm{iid}}{\sim} \mathrm{Normal} (\mathbf 0, \sigma^2_\varepsilon\mathbf I) \\
+\kappa_t &= \kappa_{t - 1} + \theta + \omega_t, 
+& \omega_t \overset{\mathrm{iid}}{\sim} \mathrm{Normal}(0, \sigma^2_\omega)
+\end{aligned}
+$$
+
+where $y_t$ is a vector containing the log-mortality rates for all age-groups during year $t$. As such, the Kalman Filter can be used to estimate and forecast mortality rates. State-space models also have the convenient property of easily handling missing data. In their 2009 book, Dynamic Linear Models with R, Giovanni Petris, Sonia Petorne and Patrizia Campagnoli, refer to the forward-filtering-backwards-sampling method for estimating state-space models using Markov Chain Monte Carlo [@campagnoli2009dynamic]. The details of this algorithm are further expanded in the 2006 book Bayesian Forecasting and Dynamic Models by Mike West and Jeff Harrison [@west2006bayesian].
+
+### Estimation via Gibbs Sampling
+
+Pedroza utilized a Gibbs sampler to obtain samples from the posterior distribution of all parameters. The idea is to alternate between **(1)** drawing the states $\kappa$ conditioned on the parameters $\alpha$, $\beta$, $\sigma^2_\varepsilon$, $\theta$, $\sigma^2_\omega$ and **(2)** drawing the parameters given the states. Let $T$ be the number of timepoints and $N$ be the number of age-groups. Then $Y$ is an $N \times T$ matrix containing all log-mortality rates with $y_{xt}$ equal to the log-mortality rate for age-group $x$ at time $t$, . First, suitable initial values are chosen for the parameters $\alpha$, $\beta$, $\kappa$, $\theta$, $\sigma^2_\varepsilon$ and $\sigma^2_\omega$. The sampler is composed of five steps that are then repeated until convergence. 
+
+**(i)** Perform forward filtering and backward sampling to obtain samples from
+
+$$
+p(\kappa | Y, \alpha, \beta, \sigma^2_\varepsilon, \theta, \sigma^2_\omega).
+$$
+
+Write $\kappa_t \sim \mathcal N(a_t, Q_t)$, and choose initial parameters $a_0$, $R_0$. Run the  Kalman filter with updating equations
+
+$$
+\begin{gathered}
+v_t = y_t - \alpha - \beta a_t, \quad Q_t = \beta R_t\beta^T + \sigma^2_\varepsilon I_N, \quad K_t = R_t\beta^TQ_t^{-1}, \\
+a_{t+1} = a_t + \theta + K_tv_t, \quad R_{t+1} = R_t(1 - K_t\beta) + \sigma^2_\omega,
+\end{gathered}
+$$
+
+for $t = 1, \dots, T$. Next, sample $\kappa$ as
+
+$$
+\begin{gathered}
+\kappa_T | Y, \alpha, \beta, \sigma^2_\varepsilon, \theta, \sigma^2_\omega \sim \mathcal N(a_T, Q_T), \\
+\kappa_{t-1} | \kappa_t \sim \mathcal N(h_t, H_t), \\
+h_t = a_t + B_t(\kappa_{t+1} - a_{t+1}), \quad H_t = Q_t - B_tR_{t+1}B_t^T, \quad
+B_t = Q_tR_{t+1}^{-1}
+\end{gathered}
+$$
+
+**(ii)** Draw $\sigma^2_\varepsilon$ from
+
+
+$$
+\sigma^2_\varepsilon | Y, \alpha, \beta, \kappa \sim \text{Inv-Gamma}\left(
+\frac{NT}{2}, \frac{\sum_x\sum_t(y_{xt} - \alpha_x - \beta_x\kappa_t)^2}{2}
+\right)
+$$
+
+**(iii)** Letting $y_x$ be the log-mortality at all time points for age-group $x$, draw $\alpha$ and $\beta$ by performing separate linear regressions of $y_x$ on $\kappa$ for each age group. That is, if $X$ is a $T \times 2$ matrix with first column equal to $[1, \dots, 1]$ and the second column equal to $\kappa$ we sample $\alpha_x$ and $\beta_x$ from
+
+$$
+(\alpha_x, \beta_x) | Y, \kappa, \sigma^2_\varepsilon \sim \mathcal N(
+(X^TX)^{-1}X^Ty_x, \sigma^2_\varepsilon (X^TX)^{-1}
+)
+$$
+
+**(iv)** Sample $\theta$ from
+
+$$
+\theta|\kappa, \sigma^2_\omega \sim \mathcal N\left(
+\frac{\kappa_T - \kappa_0}{T}, \frac{\sigma^2_\omega}{T}
+\right)
+$$
+
+**(v)** Draw $\sigma^2_\omega$ from
+
+$$
+\sigma^2_\omega | \kappa, \theta \sim \text{Inv-Gamma}\left(
+\frac{T - 1}{2}, \frac{\sum_t (\kappa_t - \kappa_{t-1} - \theta)^2}{2}
+\right)
+$$
+
+### Extensions
+
+Treating the Lee-Carter model as a Bayesian state-space model makes arbitrary extensions easy. One other model will be fit to the data, allowing for different observational variances in each age-group. The Gibbs sampling algorithm is identical except for simple modifications at steps **(ii)** and **(iii)**:
+
+**(ii)** $\sigma^2_{\varepsilon, x}$ is calculated separately for each age-group, $x$.
+
+$$
+\sigma^2_{\varepsilon, x} | Y, \alpha, \beta, \kappa \sim \text{Inv-Gamma}\left(
+\frac{T}{2}, \frac{\sum_t(y_{xt} - \alpha_x - \beta_x\kappa_t)^2}{2}
+\right)
+$$
+
+**(iii)** Regression coefficients are now sampled conditional on each age-group's unique observational variance, $\sigma^2_{\varepsilon, x}$.
+
+$$
+(\alpha_x, \beta_x) | Y, \kappa, \sigma^2_{\varepsilon, x} \sim \mathcal N(
+(X^TX)^{-1}X^Ty_x, \sigma^2_{\varepsilon, x} (X^TX)^{-1}
+)
+$$
+
+### Prior distributions
+
+* $\alpha$, $\beta$
+  - $\alpha$ and $\beta$ are given a flat prior $p(\alpha, \beta) \hspace{1mm} \propto \hspace{1mm} 1$
+* $\sigma_\varepsilon$, $\sigma_\omega$ and $\sigma^2_{\varepsilon, x}$
+  - $\sigma_\varepsilon$, $\sigma_\omega$ and $\sigma^2_{\varepsilon, x}$ are all given a flat prior $p(\sigma) \hspace{1mm} \propto \hspace{1mm} \frac1\sigma$.
+* $\kappa_0$, $\theta$
+  - $\kappa_0$ and $\theta$ are given flat priors $p(\kappa_0, \theta) \hspace{1mm} \propto \hspace{1mm} 1$.
+  - On the other hand initial values of $m_0$ and $C_0$ where $\kappa_0 \sim \mathcal N(m_0, C_0)$ are needed, but these are overwritten after the first iteration of the Gibbs sampler. 
+  - The sampler was tested for several different initial value pairs and found to be insensitive to the choice. The initial values used were $m_0 = 3.74$ and $C_0 = 1$.
+  
+## Gaussian Processes
+  

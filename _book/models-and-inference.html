@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Models and Inference | MS_Thesis.utf8</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Models and Inference | MS_Thesis.utf8" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Models and Inference | MS_Thesis.utf8" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-and-preliminary-analysis.html"/>
+<link rel="next" href="results.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#motivation-and-goals"><i class="fa fa-check"></i><b>1.1</b> Motivation and Goals</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#literature-review"><i class="fa fa-check"></i><b>1.2</b> Literature Review</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="introduction.html"><a href="introduction.html#age-period-cohort-models"><i class="fa fa-check"></i><b>1.2.1</b> Age-Period-Cohort Models</a></li>
+<li class="chapter" data-level="1.2.2" data-path="introduction.html"><a href="introduction.html#the-lee-carter-model"><i class="fa fa-check"></i><b>1.2.2</b> The Lee Carter Model</a></li>
+<li class="chapter" data-level="1.2.3" data-path="introduction.html"><a href="introduction.html#stan"><i class="fa fa-check"></i><b>1.2.3</b> Stan</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#structure-of-the-thesis"><i class="fa fa-check"></i><b>1.3</b> Structure of the Thesis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="theory-and-methods.html"><a href="theory-and-methods.html"><i class="fa fa-check"></i><b>2</b> Theory and Methods</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="theory-and-methods.html"><a href="theory-and-methods.html#bayesian-inference"><i class="fa fa-check"></i><b>2.1</b> Bayesian Inference</a></li>
+<li class="chapter" data-level="2.2" data-path="theory-and-methods.html"><a href="theory-and-methods.html#hamiltonian-monte-carlo"><i class="fa fa-check"></i><b>2.2</b> Hamiltonian Monte Carlo</a></li>
+<li class="chapter" data-level="2.3" data-path="theory-and-methods.html"><a href="theory-and-methods.html#hierarchical-models"><i class="fa fa-check"></i><b>2.3</b> Hierarchical Models</a></li>
+<li class="chapter" data-level="2.4" data-path="theory-and-methods.html"><a href="theory-and-methods.html#gaussian-processes"><i class="fa fa-check"></i><b>2.4</b> Gaussian Processes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-and-preliminary-analysis.html"><a href="data-and-preliminary-analysis.html"><i class="fa fa-check"></i><b>3</b> Data and Preliminary Analysis</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-and-preliminary-analysis.html"><a href="data-and-preliminary-analysis.html#data"><i class="fa fa-check"></i><b>3.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="models-and-inference.html"><a href="models-and-inference.html"><i class="fa fa-check"></i><b>4</b> Models and Inference</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="models-and-inference.html"><a href="models-and-inference.html#the-lee-carter-model-1"><i class="fa fa-check"></i><b>4.1</b> The Lee-Carter Model</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="models-and-inference.html"><a href="models-and-inference.html#parametric-form"><i class="fa fa-check"></i><b>4.1.1</b> Parametric Form</a></li>
+<li class="chapter" data-level="4.1.2" data-path="models-and-inference.html"><a href="models-and-inference.html#classical-estimation"><i class="fa fa-check"></i><b>4.1.2</b> Classical Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="models-and-inference.html"><a href="models-and-inference.html#a-bayesian-state-space-interpretation"><i class="fa fa-check"></i><b>4.2</b> A Bayesian State-Space Interpretation</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="models-and-inference.html"><a href="models-and-inference.html#estimation-via-gibbs-sampling"><i class="fa fa-check"></i><b>4.2.1</b> Estimation via Gibbs Sampling</a></li>
+<li class="chapter" data-level="4.2.2" data-path="models-and-inference.html"><a href="models-and-inference.html#extensions"><i class="fa fa-check"></i><b>4.2.2</b> Extensions</a></li>
+<li class="chapter" data-level="4.2.3" data-path="models-and-inference.html"><a href="models-and-inference.html#prior-distributions"><i class="fa fa-check"></i><b>4.2.3</b> Prior distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="models-and-inference.html"><a href="models-and-inference.html#gaussian-processes-1"><i class="fa fa-check"></i><b>4.3</b> Gaussian Processes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="6" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>6</b> Conclusions</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="models-and-inference" class="section level1">
+<h1><span class="header-section-number">4</span> Models and Inference</h1>
+<div id="the-lee-carter-model-1" class="section level2">
+<h2><span class="header-section-number">4.1</span> The Lee-Carter Model</h2>
+<div id="parametric-form" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Parametric Form</h3>
+<p>There exist many named models for the forecasting of mortality rates, but the most famous one is the Lee-Carter model <span class="citation">(Lee and Carter <a href="#ref-lee1992modeling" role="doc-biblioref">1992</a>)</span>, named after its authors Ronald D. Lee and Lawrence R. Carter. Let <span class="math inline">\(m(x, t)\)</span> be the mortality rate for age <span class="math inline">\(x\)</span> during year <span class="math inline">\(t\)</span>. The Lee-Carter model can be written</p>
+<p><span class="math display">\[
+\begin{aligned}
+\ln m(x, t) &amp;= \alpha_x + \beta_x \kappa_t + \varepsilon_{x, t}, \\
+\kappa_t &amp;= f(\kappa_{t - 1}) + \omega_t, \\
+\varepsilon_{x,t} &amp;\sim  \mathcal N(0, \sigma^2_{\varepsilon}), \\
+\omega_t &amp;\sim \mathcal N(0, \sigma^2_{\omega})
+\end{aligned}
+\]</span></p>
+<p>In this parametrization <span class="math inline">\(\alpha_x\)</span> can be thought of as the mean log-mortality for age-group <span class="math inline">\(x\)</span>. As <span class="math inline">\(\mathbf \beta\)</span> is a vector and <span class="math inline">\(\kappa_t\)</span> is a scalar, <span class="math inline">\(\kappa\)</span> is interpreted as a national mortality index and <span class="math inline">\(\beta_x\)</span> as the rate-of-change intensity for age-group <span class="math inline">\(x\)</span>. Thus, change in mortality for all age-groups follows the same general pattern, but with different intensities determined by <span class="math inline">\(\beta\)</span>. Looking back at figure 3 this model fits one intercept and one coefficient of linear change for each age-group, corresponding to the mortality rate at year 1981 and the linear trend, which seems like a logical approximation when inspecting the figure.</p>
+<p>In their original paper, Lee and Carter modeled <span class="math inline">\(f\)</span>, the time-trend of <span class="math inline">\(\kappa\)</span>, as a random walk with drift, i.e.</p>
+<p><span class="math display">\[
+\begin{aligned}
+f(\kappa_{t-1}) &amp;= \kappa_{t-1} + \theta, \textrm{ such that } \\
+\kappa_t &amp;= \kappa_{t-1} + \theta + \omega_t
+\end{aligned}
+\]</span></p>
+<p>but others have included differencing and autoregressive behaviours such that <span class="math inline">\(f\)</span> becomes a second-level ARIMA process</p>
+<p><span class="math display">\[
+(\kappa_t - \mu_\kappa - \beta_\kappa t) = \rho(\kappa_{t-1} - \mu_\kappa - \beta_\kappa (t-1)), \quad 0 &lt; \vert\rho\vert &lt; 1,
+\]</span></p>
+<p>where <span class="math inline">\(\mu_\kappa\)</span> is the expected value of <span class="math inline">\(\kappa_0\)</span> and <span class="math inline">\(\beta_\kappa\)</span> is the linear trend of <span class="math inline">\(\kappa\)</span>. Thus the second level ARIMA representation assumes that the observed deviation of <span class="math inline">\(\kappa\)</span> from its expected value at time <span class="math inline">\(t\)</span>, according to a linear trend, is correlated with that same deviation at time <span class="math inline">\(t-1\)</span> with correlation <span class="math inline">\(\rho\)</span>.</p>
+<p>In this project the time-trend of <span class="math inline">\(\kappa\)</span> is assumed to follow a random walk with drift.</p>
+</div>
+<div id="classical-estimation" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Classical Estimation</h3>
+<p>The Lee-Carter model as represented thus far is overparametrized, as any change in the estimates of <span class="math inline">\(\kappa\)</span> can be reversed by adequate changes in <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. To combat this, Lee and Carter imposed the following constraints to ensure identifiability</p>
+<p><span class="math display">\[
+\sum_i\beta_i = 1, \quad \sum_t \kappa_t = 0.
+\]</span></p>
+<p>Estimates of the parameters from the Lee-Carter model are commonly obtained by singular value decomposition <em>(SVD)</em>. The vector <span class="math inline">\(\alpha\)</span> is set to the average log-mortality for each agegroup and SVD is then applied to the mean-corrected mortality rates <span class="math inline">\(Y - \hat\alpha = UDV^T\)</span>, where <span class="math inline">\(D\)</span> is a diagonal matrix containing singular values and <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are orthogonal matrices. <span class="math inline">\(\beta\)</span> is chosen as the first column of <span class="math inline">\(U\)</span>, and <span class="math inline">\(\kappa\)</span> is set to be equal to the product of the first singular value, <span class="math inline">\(D_{11}\)</span>, and the first column of <span class="math inline">\(V\)</span>. The correct estimates are then obtained by imposing the necessary parameter restrictions. This is equivalent to performing principal component analysis on a matrix containing the mean-corrected log-mortality rates for all groups at all times and choosing the first principal component.</p>
+</div>
+</div>
+<div id="a-bayesian-state-space-interpretation" class="section level2">
+<h2><span class="header-section-number">4.2</span> A Bayesian State-Space Interpretation</h2>
+<p>Claudia Pedroza published an article in 2006 where she reformulates the method as a state-space model <span class="citation">(Pedroza <a href="#ref-pedroza2006bayesian" role="doc-biblioref">2006</a>)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+y_t &amp;= \mathbf\alpha + \mathbf\beta\kappa_t + \varepsilon_t, 
+&amp; \varepsilon \overset{\mathrm{iid}}{\sim} \mathrm{Normal} (\mathbf 0, \sigma^2_\varepsilon\mathbf I) \\
+\kappa_t &amp;= \kappa_{t - 1} + \theta + \omega_t, 
+&amp; \omega_t \overset{\mathrm{iid}}{\sim} \mathrm{Normal}(0, \sigma^2_\omega)
+\end{aligned}
+\]</span></p>
+<p>where <span class="math inline">\(y_t\)</span> is a vector containing the log-mortality rates for all age-groups during year <span class="math inline">\(t\)</span>. As such, the Kalman Filter can be used to estimate and forecast mortality rates. State-space models also have the convenient property of easily handling missing data. In their 2009 book, Dynamic Linear Models with R, Giovanni Petris, Sonia Petorne and Patrizia Campagnoli, refer to the forward-filtering-backwards-sampling method for estimating state-space models using Markov Chain Monte Carlo <span class="citation">(Campagnoli, Petris, and Petrone <a href="#ref-campagnoli2009dynamic" role="doc-biblioref">2009</a>)</span>. The details of this algorithm are further expanded in the 2006 book Bayesian Forecasting and Dynamic Models by Mike West and Jeff Harrison <span class="citation">(West and Harrison <a href="#ref-west2006bayesian" role="doc-biblioref">2006</a>)</span>.</p>
+<div id="estimation-via-gibbs-sampling" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Estimation via Gibbs Sampling</h3>
+<p>Pedroza utilized a Gibbs sampler to obtain samples from the posterior distribution of all parameters. The idea is to alternate between <strong>(1)</strong> drawing the states <span class="math inline">\(\kappa\)</span> conditioned on the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\sigma^2_\varepsilon\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma^2_\omega\)</span> and <strong>(2)</strong> drawing the parameters given the states. Let <span class="math inline">\(T\)</span> be the number of timepoints and <span class="math inline">\(N\)</span> be the number of age-groups. Then <span class="math inline">\(Y\)</span> is an <span class="math inline">\(N \times T\)</span> matrix containing all log-mortality rates with <span class="math inline">\(y_{xt}\)</span> equal to the log-mortality rate for age-group <span class="math inline">\(x\)</span> at time <span class="math inline">\(t\)</span>, . First, suitable initial values are chosen for the parameters <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\kappa\)</span>, <span class="math inline">\(\theta\)</span>, <span class="math inline">\(\sigma^2_\varepsilon\)</span> and <span class="math inline">\(\sigma^2_\omega\)</span>. The sampler is composed of five steps that are then repeated until convergence.</p>
+<p><strong>(i)</strong> Perform forward filtering and backward sampling to obtain samples from</p>
+<p><span class="math display">\[
+p(\kappa | Y, \alpha, \beta, \sigma^2_\varepsilon, \theta, \sigma^2_\omega).
+\]</span></p>
+<p>Write <span class="math inline">\(\kappa_t \sim \mathcal N(a_t, Q_t)\)</span>, and choose initial parameters <span class="math inline">\(a_0\)</span>, <span class="math inline">\(R_0\)</span>. Run the Kalman filter with updating equations</p>
+<p><span class="math display">\[
+\begin{gathered}
+v_t = y_t - \alpha - \beta a_t, \quad Q_t = \beta R_t\beta^T + \sigma^2_\varepsilon I_N, \quad K_t = R_t\beta^TQ_t^{-1}, \\
+a_{t+1} = a_t + \theta + K_tv_t, \quad R_{t+1} = R_t(1 - K_t\beta) + \sigma^2_\omega,
+\end{gathered}
+\]</span></p>
+<p>for <span class="math inline">\(t = 1, \dots, T\)</span>. Next, sample <span class="math inline">\(\kappa\)</span> as</p>
+<p><span class="math display">\[
+\begin{gathered}
+\kappa_T | Y, \alpha, \beta, \sigma^2_\varepsilon, \theta, \sigma^2_\omega \sim \mathcal N(a_T, Q_T), \\
+\kappa_{t-1} | \kappa_t \sim \mathcal N(h_t, H_t), \\
+h_t = a_t + B_t(\kappa_{t+1} - a_{t+1}), \quad H_t = Q_t - B_tR_{t+1}B_t^T, \quad
+B_t = Q_tR_{t+1}^{-1}
+\end{gathered}
+\]</span></p>
+<p><strong>(ii)</strong> Draw <span class="math inline">\(\sigma^2_\varepsilon\)</span> from</p>
+<p><span class="math display">\[
+\sigma^2_\varepsilon | Y, \alpha, \beta, \kappa \sim \text{Inv-Gamma}\left(
+\frac{NT}{2}, \frac{\sum_x\sum_t(y_{xt} - \alpha_x - \beta_x\kappa_t)^2}{2}
+\right)
+\]</span></p>
+<p><strong>(iii)</strong> Letting <span class="math inline">\(y_x\)</span> be the log-mortality at all time points for age-group <span class="math inline">\(x\)</span>, draw <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> by performing separate linear regressions of <span class="math inline">\(y_x\)</span> on <span class="math inline">\(\kappa\)</span> for each age group. That is, if <span class="math inline">\(X\)</span> is a <span class="math inline">\(T \times 2\)</span> matrix with first column equal to <span class="math inline">\([1, \dots, 1]\)</span> and the second column equal to <span class="math inline">\(\kappa\)</span> we sample <span class="math inline">\(\alpha_x\)</span> and <span class="math inline">\(\beta_x\)</span> from</p>
+<p><span class="math display">\[
+(\alpha_x, \beta_x) | Y, \kappa, \sigma^2_\varepsilon \sim \mathcal N(
+(X^TX)^{-1}X^Ty_x, \sigma^2_\varepsilon (X^TX)^{-1}
+)
+\]</span></p>
+<p><strong>(iv)</strong> Sample <span class="math inline">\(\theta\)</span> from</p>
+<p><span class="math display">\[
+\theta|\kappa, \sigma^2_\omega \sim \mathcal N\left(
+\frac{\kappa_T - \kappa_0}{T}, \frac{\sigma^2_\omega}{T}
+\right)
+\]</span></p>
+<p><strong>(v)</strong> Draw <span class="math inline">\(\sigma^2_\omega\)</span> from</p>
+<p><span class="math display">\[
+\sigma^2_\omega | \kappa, \theta \sim \text{Inv-Gamma}\left(
+\frac{T - 1}{2}, \frac{\sum_t (\kappa_t - \kappa_{t-1} - \theta)^2}{2}
+\right)
+\]</span></p>
+</div>
+<div id="extensions" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Extensions</h3>
+<p>Treating the Lee-Carter model as a Bayesian state-space model makes arbitrary extensions easy. One other model will be fit to the data, allowing for different observational variances in each age-group. The Gibbs sampling algorithm is identical except for simple modifications at steps <strong>(ii)</strong> and <strong>(iii)</strong>:</p>
+<p><strong>(ii)</strong> <span class="math inline">\(\sigma^2_{\varepsilon, x}\)</span> is calculated separately for each age-group, <span class="math inline">\(x\)</span>.</p>
+<p><span class="math display">\[
+\sigma^2_{\varepsilon, x} | Y, \alpha, \beta, \kappa \sim \text{Inv-Gamma}\left(
+\frac{T}{2}, \frac{\sum_t(y_{xt} - \alpha_x - \beta_x\kappa_t)^2}{2}
+\right)
+\]</span></p>
+<p><strong>(iii)</strong> Regression coefficients are now sampled conditional on each age-group’s unique observational variance, <span class="math inline">\(\sigma^2_{\varepsilon, x}\)</span>.</p>
+<p><span class="math display">\[
+(\alpha_x, \beta_x) | Y, \kappa, \sigma^2_{\varepsilon, x} \sim \mathcal N(
+(X^TX)^{-1}X^Ty_x, \sigma^2_{\varepsilon, x} (X^TX)^{-1}
+)
+\]</span></p>
+</div>
+<div id="prior-distributions" class="section level3">
+<h3><span class="header-section-number">4.2.3</span> Prior distributions</h3>
+<ul>
+<li><span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>
+<ul>
+<li><span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are given a flat prior <span class="math inline">\(p(\alpha, \beta) \hspace{1mm} \propto \hspace{1mm} 1\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\sigma_\varepsilon\)</span>, <span class="math inline">\(\sigma_\omega\)</span> and <span class="math inline">\(\sigma^2_{\varepsilon, x}\)</span>
+<ul>
+<li><span class="math inline">\(\sigma_\varepsilon\)</span>, <span class="math inline">\(\sigma_\omega\)</span> and <span class="math inline">\(\sigma^2_{\varepsilon, x}\)</span> are all given a flat prior <span class="math inline">\(p(\sigma) \hspace{1mm} \propto \hspace{1mm} \frac1\sigma\)</span>.</li>
+</ul></li>
+<li><span class="math inline">\(\kappa_0\)</span>, <span class="math inline">\(\theta\)</span>
+<ul>
+<li><span class="math inline">\(\kappa_0\)</span> and <span class="math inline">\(\theta\)</span> are given flat priors <span class="math inline">\(p(\kappa_0, \theta) \hspace{1mm} \propto \hspace{1mm} 1\)</span>.</li>
+<li>On the other hand initial values of <span class="math inline">\(m_0\)</span> and <span class="math inline">\(C_0\)</span> where <span class="math inline">\(\kappa_0 \sim \mathcal N(m_0, C_0)\)</span> are needed, but these are overwritten after the first iteration of the Gibbs sampler.</li>
+<li>The sampler was tested for several different initial value pairs and found to be insensitive to the choice. The initial values used were <span class="math inline">\(m_0 = 3.74\)</span> and <span class="math inline">\(C_0 = 1\)</span>.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="gaussian-processes-1" class="section level2">
+<h2><span class="header-section-number">4.3</span> Gaussian Processes</h2>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-campagnoli2009dynamic">
+<p>Campagnoli, Patrizia, Giovanni Petris, and Sonia Petrone. 2009. <em>Dynamic Linear Models with R</em>. Springer.</p>
+</div>
+<div id="ref-lee1992modeling">
+<p>Lee, Ronald D, and Lawrence R Carter. 1992. “Modeling and Forecasting Us Mortality.” <em>Journal of the American Statistical Association</em> 87 (419): 659–71.</p>
+</div>
+<div id="ref-pedroza2006bayesian">
+<p>Pedroza, Claudia. 2006. “A Bayesian Forecasting Model: Predicting Us Male Mortality.” <em>Biostatistics</em> 7 (4): 530–50.</p>
+</div>
+<div id="ref-west2006bayesian">
+<p>West, Mike, and Jeff Harrison. 2006. <em>Bayesian Forecasting and Dynamic Models</em>. Springer Science &amp; Business Media.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-and-preliminary-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["MS_Thesis.pdf", "MS_Thesis.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

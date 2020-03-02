@@ -1,0 +1,41 @@
+\usepackage{ucs}
+% \usepackage{t1enc}
+\usepackage{graphicx}
+\usepackage[intoc]{nomencl}
+\usepackage[shortlabels]{enumitem}
+\usepackage{color}
+\usepackage{url}
+\usepackage{eso-pic}
+\usepackage{amssymb}
+\usepackage[nottoc]{tocbibind}
+\usepackage[sort&compress,authoryear]{natbib}
+\usepackage[sf,normalsize]{subfigure}
+\usepackage[format=plain,labelformat=simple,labelsep=colon]{caption}
+\usepackage{placeins}
+\usepackage{tabularx}
+\usepackage{appendix}
+\usepackage{booktabs}
+\usepackage{geometry}
+
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0cm}
+\raggedbottom
+
+\input{params}
+
+\newcommand\BackgroundPic{
+\put(0,0){
+\parbox[b][\paperheight]{\paperwidth}{
+\vfill
+\centering
+\hspace*{-0.6cm}
+\includegraphics[width=\paperwidth,height=\paperheight,
+keepaspectratio]{foot_img.png}
+}}
+\setlength{\unitlength}{\paperwidth}
+\begin{picture}(0,0)(0,-0.15)
+\put(0,0){\color{white}\parbox{1\paperwidth}{\centering\bfseries\sffamily \Large Faculty of \thesisfaculty \\
+University of Iceland\\
+\thesisyear}}
+\end{picture}
+}
